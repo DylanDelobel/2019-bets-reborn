@@ -2,6 +2,8 @@ import os
 
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
+from dotenv import load_dotenv
+load_dotenv()
 
 from app.flask_app import create_app, db
 
