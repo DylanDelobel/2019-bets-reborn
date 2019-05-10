@@ -11,8 +11,6 @@ class Config:
 
 
 class DevelopmentConfig(Config):
-    # uncomment the line below to use postgres
-    # SQLALCHEMY_DATABASE_URI = postgres_local_base
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, '2019-bets.db')
 
