@@ -3,12 +3,15 @@ import os
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 
-from app import create_app, db
+from app.flask_app import create_app, db
 
 # import model for db
-from app.model import user
+# from app.model import user
 
-app = create_app(os.getenv('BOILERPLATE_ENV') or 'dev')
+from app import blueprint
+
+app = create_app(os.getenv('PROJECT_ENV') or 'dev')
+app.register_blueprint(blueprint)
 
 app.app_context().push()
 

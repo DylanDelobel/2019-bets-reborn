@@ -1,17 +1,14 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_bcrypt import Bcrypt
+from flask_restplus import Api
+from flask import Blueprint
 
-from .config import config_by_name
+from .controller.user_controller import api as user_ns
 
-db = SQLAlchemy()
-flask_bcrypt = Bcrypt()
+blueprint = Blueprint('api', __name__)
 
+api = Api(blueprint,
+          title='2019 BETS API',
+          version='1.0',
+          description='BETS REST Documentation'
+          )
 
-def create_app(config_name):
-    app = Flask(__name__)
-    app.config.from_object(config_by_name[config_name])
-    db.init_app(app)
-    flask_bcrypt.init_app(app)
-
-    return app
+api.add_namespace(user_ns, path='/user')
